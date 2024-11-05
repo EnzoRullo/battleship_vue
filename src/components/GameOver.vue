@@ -10,8 +10,8 @@ export default {
     },
     props: {
         player: new playerInfo(),
-        field: Array < number >
-        },
+        field: Array<number>
+    },
     computed: {
         notHit() {
             let notHit = 0;
@@ -42,23 +42,39 @@ export default {
 
 <template>
     <div v-if="player">
-        <ul>
-            <li>Score: {{ player.score }}</li>
-            <li>
-                Best hit streak: <br>{{ player.bestStreak }} at {{ player.lastTurnStreak }}
+        <div class="row">
+            <div class="col-7">Score:</div>
+            <div class="col-auto">{{ player.score }}</div>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-7">Best hit streak:</div>
+            <div class="col-auto">{{ player.bestStreak }} at {{ player.lastTurnStreak }}
                 turn
-            </li>
-            <li>Ship boxes not hit: {{ notHit }}</li>
-            <li>Water boxes not hit:{{ waterNotHit }}</li>
-            <li>Duplicates coordinates:</li>
-            <li v-for="[key,times] in duplicates">{{ key }} : {{ times }} times</li>
-        </ul>
-    </div>
-</template>
+            </div>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-7">Ship boxes not hit:</div>
+            <div class="col-auto">{{ notHit }}</div>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-7">Water boxes not hit:</div>
+            <div class="col-auto">{{ waterNotHit }}</div>
+            <hr>
+        </div>
 
-<style>
-li {
-    list-style: none;
-    text-align: center;
-}
-</style>
+        <div class="row">
+            <div class="text-center col mb-2">Duplicates</div>
+            <hr />
+        </div>
+
+        <div class="row m-1">
+            <div class="col-6 text-center" v-for="[key, times] in duplicates">
+                <div>{{key}} : {{times}} times</div>
+            </div>
+        </div>
+    </div>
+
+</template>

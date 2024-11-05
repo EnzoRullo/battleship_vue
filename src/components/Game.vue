@@ -149,7 +149,7 @@ export default {
     </div>
 
     <div v-if="gameOver">
-        <h1>
+        <h1 class="text-center">
             Game Over
             <span v-if="p1Obj.score > p2Obj.score">
                 {{ storeData.player1 }} win!</span>
@@ -157,11 +157,11 @@ export default {
                 {{ storeData.player2 }} win! </span>
             <span v-else>we have no winners...</span>
         </h1>
-        <div class="buttonContainer">
-            <button @click="newGame"> New game </button>
-            <button @click="goHome"> Home </button>
+        <div class="buttonContainer m-4">
+            <button class="btn btn-primary p-3" @click="newGame"> New game </button>
+            <button class="btn btn-primary p-3" @click="goHome"> Home </button>
         </div>
-        <h3>Game finish in {{ turns }} turns</h3>
+        <h3 class="text-center">Game finish in {{ turns }} turns</h3>
         <div class="bigContainer">
             <div class="p1">
                 <GameOver :field="fieldP1" :player="p1Obj" />
@@ -169,6 +169,11 @@ export default {
             <div class="p2">
                 <GameOver :field="fieldP2" :player="p2Obj" />
             </div>
+        </div>
+    </div>
+    <div v-else class="text-center">
+        <div class="spinner-border text-primary" style="width: 10rem; height: 10rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
         </div>
     </div>
 </template>
@@ -209,11 +214,6 @@ export default {
 .p2 {
     grid-area: 2 / 3 / 2 / 3;
     transform: translate(-23%);
-}
-
-h1,
-h3 {
-    text-align: center;
 }
 
 .buttonContainer {
